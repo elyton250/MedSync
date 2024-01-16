@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="search_styles.css">
+    <title>Patient Records</title>
+</head>
+<body>
+    <div class="container">
+        <div class="search-container">
+            <form class="search-form">
+                <h1>Patient Search</h1>
+                <label for="patientName">Patient Name:</label>
+                <input type="text" id="patientName" name="patientName" required>
+                
+                <label for="patientId">Patient ID:</label>
+                <input type="text" id="patientId" name="patientId" required>
+                
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="recent-records">
+            <h2>Recently Accessed Records</h2>
+            <ul>
+                <li>Patient ABC - 2022-01-20</li>
+                <li>Patient XYZ - 2022-01-19</li>
+                <li>Patient QWE - 2022-01-18</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
