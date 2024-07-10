@@ -15,7 +15,7 @@ class Patient:
         contact_number,
         medical_history=None
     ):
-        self.id = generate_id(first_name, last_name, id_number)
+        self._id = generate_id(first_name, last_name, id_number)
         self.id_number = id_number
         self.first_name = first_name
         self.last_name = last_name
@@ -27,7 +27,7 @@ class Patient:
     
     def to_json(self):
         return {
-            "id": self.id,
+            "id": self._id,
             "id_number": self.id_number,
             "first_name": self.first_name,
             "last_name": self.last_name,
