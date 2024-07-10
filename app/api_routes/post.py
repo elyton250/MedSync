@@ -6,4 +6,6 @@ post_routes = Blueprint('post_routes', __name__)
 @post_routes.route('/add_patient', methods=['POST'])
 def add_patient():
     data = request.get_json()
-    return Patient.create(data)
+    Patient.create(data).__dict__
+    
+    return "patient successfully added", 200

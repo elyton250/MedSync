@@ -10,11 +10,10 @@ def hello_world():
 
 @api.route('/patients')
 def get_patients():
-    patients = Patient.get_all()
-    patients_json = [Patient(**patient).to_json() for patient in patients]
-    return jsonify(patients_json)
+    from app.models.patient import Patient
+    return Patient.get_all()
 
-@api.route('/patients/<int:id>')
+@api.route('/patients/<id>')
 def get_patient(id):
     from app.models.patient import Patient
     return Patient.get_one(id)
