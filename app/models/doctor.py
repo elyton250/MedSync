@@ -13,7 +13,7 @@ class Doctor:
         contact_number,
         department
     ):
-        self.id = generate_id()
+        self._id = generate_id()
         self.id_number = id_number
         self.first_name = first_name
         self.last_name = last_name

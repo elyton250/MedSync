@@ -39,19 +39,23 @@ class Patient:
         }
 
     def save(self):
+        """ save patient"""
         db.patients.insert_one(self.__dict__)
 
     @staticmethod
     def get_all():
+        """ get all patients"""
         return list(db.patients.find())
 
     @staticmethod
-    def get_one(id):
-        return db.patients.find_one({"id": id})
+    def get_one(id_number):
+        """
+        get patient by National identity card number"""
+        return db.patients.find_one({"id_number": id_number})
 
-    @staticmethod
-    def get_by_name(first_name, last_name):
-        return db.patients.find_one({"first_name": first_name, "last_name": last_name})
+    # @staticmethod
+    # def get_by_name(first_name, last_name):
+    #     return db.patients.find_one({"first_name": first_name, "last_name": last_name})
 
     @staticmethod
     def get_medical_histories(id):

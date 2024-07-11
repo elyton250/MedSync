@@ -6,22 +6,25 @@ api = Blueprint('api', __name__)
 
 @api.route('/')
 def hello_world():
-    return 'Hello, World!'
+    """ Texting API. """
+    return jsonify({"Response": "OK"})
 
 @api.route('/patients')
 def get_patients():
+    """ get all patients"""
     from app.models.patient import Patient
     return Patient.get_all()
 
-@api.route('/patients/<id>')
-def get_patient(id):
+@api.route('/patients/<id_number>')
+def get_patient(id_number):
+    """ get patient by National identity card number"""
     from app.models.patient import Patient
-    return Patient.get_one(id)
+    return Patient.get_one(id_number)
 
-@api.route('/patients/<string:first_name>/<string:last_name>')
-def get_patient_by_name(first_name, last_name):
-    from app.models.patient import Patient
-    return Patient.get_by_name(first_name, last_name)
+# @api.route('/patients/<string:first_name>/<string:last_name>')
+# def get_patient_by_name(first_name, last_name):
+#     from app.models.patient import Patient
+#     return Patient.get_by_name(first_name, last_name)
 
 @api.route('/patients/<int:id>/medical_histories')
 def get_medical_histories_by_patient(id):
