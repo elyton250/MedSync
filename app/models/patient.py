@@ -58,8 +58,8 @@ class Patient:
     #     return db.patients.find_one({"first_name": first_name, "last_name": last_name})
 
     @staticmethod
-    def get_medical_histories(id):
-        return list(db.medical_histories.find({"patient_id": id}))
+    def get_medical_histories(id_number):
+        return list(db.medical_histories.find({"patient_id": id_number}))
 
     @staticmethod
     def delete(id):

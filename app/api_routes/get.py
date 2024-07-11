@@ -26,10 +26,11 @@ def get_patient(id_number):
 #     from app.models.patient import Patient
 #     return Patient.get_by_name(first_name, last_name)
 
-@api.route('/patients/<int:id>/medical_histories')
-def get_medical_histories_by_patient(id):
+@api.route('/patients/<int:id_number>/medical_histories')
+def get_medical_histories_by_patient(id_number):
+    """ get medical histories by patient's NID number"""
     from app.models.patient import Patient
-    return Patient.get_medical_histories(id)
+    return Patient.get_medical_histories(id_number)
 
 @api.route('/patients/<int:id>/delete')
 def delete_patient(id):
