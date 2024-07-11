@@ -53,17 +53,20 @@ class Patient:
         get patient by National identity card number"""
         return db.patients.find_one({"id_number": id_number})
 
+    """ I commented this because patients can have same names"""
     # @staticmethod
     # def get_by_name(first_name, last_name):
     #     return db.patients.find_one({"first_name": first_name, "last_name": last_name})
 
     @staticmethod
     def get_medical_histories(id_number):
+        """ get medical histories by patient's NID number"""
         return list(db.medical_histories.find({"patient_id": id_number}))
 
     @staticmethod
-    def delete(id):
-        db.patients.delete_one({"id": id})
+    def delete(id_number):
+        """ delete patient by National identity card number"""
+        db.patients.delete_one({id_number: id_number})
 
     @staticmethod
     def update(id, data):

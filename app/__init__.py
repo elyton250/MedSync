@@ -29,7 +29,11 @@ except Exception as e:
 
 from app.api_routes.get import api
 from app.api_routes.post import post_routes
+from app.api_routes.delete import delete_routes
+
+
 medsync.register_blueprint(api)
 medsync.register_blueprint(post_routes)
+medsync.register_blueprint(delete_routes)
 
 
