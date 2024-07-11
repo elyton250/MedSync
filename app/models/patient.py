@@ -62,15 +62,21 @@ class Patient:
     def get_medical_histories(id_number):
         """ get medical histories by patient's NID number"""
         return list(db.medical_histories.find({"patient_id": id_number}))
-
+    
     @staticmethod
     def delete(id_number):
         """ delete patient by National identity card number"""
         db.patients.delete_one({id_number: id_number})
 
     @staticmethod
-    def update(id, data):
-        db.patients.update_one({"id": id}, {"$set": data})
+    def update(id_number, data):
+        """ update patient
+
+        Args:
+            id (_type_): _description_
+            data (_type_): _description_
+        """
+        db.patients.update_one({"id_number": id_number}, {"$set": data})
     
     @staticmethod
     def create(data):

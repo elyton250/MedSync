@@ -33,14 +33,6 @@ def get_medical_histories_by_patient(id_number):
     from app.models.patient import Patient
     return Patient.get_medical_histories(id_number)
 
-# @api.route('/patients/<int:id_number>/delete', methods=['DELETE'], strict_slashes=False)
-# def delete_patient(id_number):
-#     """ delete patient by National identity card number"""
-#     from app.models.patient import Patient
-#     if Patient.get_one(id_number):
-#         Patient.delete(id_number)
-#     return jsonify({"message": "patient successfully deleted"}),200
-
 @api.route('/doctors')
 def get_doctors():
     from app.models.doctor import Doctor
@@ -51,10 +43,11 @@ def get_doctor(id):
     from app.models.doctor import Doctor
     return Doctor.get_one(id)
 
-@api.route('/doctors/<string:first_name>/<string:last_name>')
-def get_doctor_by_name(first_name, last_name):
-    from app.models.doctor import Doctor
-    return Doctor.get_by_name(first_name, last_name)
+""" I commented this because doctors can have same names"""
+# @api.route('/doctors/<string:first_name>/<string:last_name>')
+# def get_doctor_by_name(first_name, last_name):
+#     from app.models.doctor import Doctor
+#     return Doctor.get_by_name(first_name, last_name)
 
 @api.route('/doctors/<int:id>/patients')
 def get_patients_by_doctor(id):

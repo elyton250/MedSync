@@ -10,7 +10,7 @@ class MedicalHistory:
         treatment,
         notes=None,
     ):
-        self.id = generate_id()
+        # self.id = generate_id()
         self.patient_id = patient_id
         self.visit_date = visit_date
         self.diagnosis = diagnosis
