@@ -1,7 +1,7 @@
 from app import db
 from app.id_gen import generate_id
-from models.patient import Patient
-from models.department import Department
+from app.models.patient import Patient
+from app.models.department import Department
 
 class Doctor:
     def __init__(
@@ -11,15 +11,15 @@ class Doctor:
         last_name,
         specialty,
         contact_number,
-        department
+        department = None
     ):
-        self._id = generate_id()
+        self._id = generate_id(first_name,last_name,id_number)
         self.id_number = id_number
         self.first_name = first_name
         self.last_name = last_name
         self.specialty = specialty
         self.contact_number = contact_number
-        self.department = Department.get_by_name(department)
+        self.department = Department.get_by_name(department) or specialty
 
     def save(self):
         db.doctors.insert_one(self.__dict__)
@@ -44,5 +44,12 @@ class Doctor:
     def get_patient(id):
         patient = Patient.get_one(id)
         return patient
+
+    @staticmethod
+    def create(data):
+        """ create doctor"""
+        doctor = Doctor(**data)
+        doctor.save()
+        return doctor
         
         
