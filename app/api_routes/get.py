@@ -21,6 +21,17 @@ def get_patient(id_number):
     from app.models.patient import Patient
     return Patient.get_one(id_number)
 
+
+# @api.route('/patients/<id>', strict_slashes=False)
+# def get_patient_by_id(id):
+#     """ get patient by id"""
+#     if not id:
+#         return jsonify({"message": "id is required"}), 400
+#     if isinstance(id, str):
+#         return jsonify({"message": "id must be an integer"}), 400
+#     from app.models.patient import Patient
+#     return Patient.get_one_by_id(id)
+
 """ I commented this because patients can have same names"""
 # @api.route('/patients/<string:first_name>/<string:last_name>')
 # def get_patient_by_name(first_name, last_name):

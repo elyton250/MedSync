@@ -49,9 +49,22 @@ class Patient:
 
     @staticmethod
     def get_one(id_number):
-        """
-        get patient by National identity card number"""
-        return db.patients.find_one({"id_number": id_number})
+        
+        if id_number:
+            # print('id_number', id_number)
+            """
+            get patient by National identity card number"""
+            patient = db.patients.find_one({"id_number": id_number})
+            # print('patient retriveed in get one', patient)
+        
+        else: 
+            return None
+        
+        return patient
+    
+    @staticmethod
+    def get_one_by_id(id):
+        return db.patients.find_one({"_id": id})
 
     """ I commented this because patients can have same names"""
     # @staticmethod
@@ -66,7 +79,8 @@ class Patient:
     @staticmethod
     def delete(id_number):
         """ delete patient by National identity card number"""
-        db.patients.delete_one({id_number: id_number})
+        # print('reaching delete function')
+        db.patients.delete_one({"id_number": id_number})
 
     @staticmethod
     def update(id_number, data):
