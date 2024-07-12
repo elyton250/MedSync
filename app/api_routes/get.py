@@ -49,9 +49,14 @@ def get_doctors():
     from app.models.doctor import Doctor
     return Doctor.get_all()
 
-@api.route('/doctors/<int:id>')
+@api.route('/doctors/<id>', methods=['GET'], strict_slashes=False)
 def get_doctor(id):
     from app.models.doctor import Doctor
+    # print(isinstance(id, str))
+    if not id:
+        return jsonify({"message": "id is required"}), 400
+    if Doctor.get_one(id) is None:
+        return jsonify({"message": "doctor not found"}), 404
     return Doctor.get_one(id)
 
 """ I commented this because doctors can have same names"""

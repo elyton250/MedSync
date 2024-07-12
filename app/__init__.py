@@ -4,11 +4,15 @@ import os
 from dotenv import load_dotenv
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from flask_login import LoginManager
 
+
+login_manager = LoginManager()
 load_dotenv()
 
 medsync = Flask(__name__)
 
+login_manager.init_app(medsync)
 
 password = os.getenv("MONGO_PASSWORD")
 db_name = os.getenv("MONGO_DB")
@@ -26,14 +30,19 @@ try:
 except Exception as e:
     print(e)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return db.doctors.find_one({"_id": user_id})
 
 from app.api_routes.get import api
 from app.api_routes.post import post_routes
 from app.api_routes.delete import delete_routes
+from app.auth.signup import auth_routes
 
 
 medsync.register_blueprint(api)
 medsync.register_blueprint(post_routes)
 medsync.register_blueprint(delete_routes)
+medsync.register_blueprint(auth_routes)
 
 

@@ -2,6 +2,7 @@ from app import db
 from app.id_gen import generate_id
 from app.models.patient import Patient
 from app.models.department import Department
+from app.hash_pass import encrypt_password
 
 class Doctor:
     def __init__(
@@ -11,6 +12,7 @@ class Doctor:
         last_name,
         specialty,
         contact_number,
+        password,
         department = None
     ):
         self._id = generate_id(first_name,last_name,id_number)
@@ -18,6 +20,7 @@ class Doctor:
         self.first_name = first_name
         self.last_name = last_name
         self.specialty = specialty
+        self.hash_password = encrypt_password(password)
         self.contact_number = contact_number
         self.department = Department.get_by_name(department) or specialty
 
@@ -30,7 +33,14 @@ class Doctor:
 
     @staticmethod
     def get_one(id):
-        return db.doctors.find_one({"id": id})
+        # print(f"getting doctor with id {id}")
+        doctor = db.doctors.find_one({"_id": id})
+        # print(f"found doctor {doctor}")
+        return doctor
+    
+    @staticmethod
+    def get_by_id_number(id_number):
+        return db.doctors.find_one({"id_number": id_number})
 
     @staticmethod
     def get_by_name(first_name, last_name):

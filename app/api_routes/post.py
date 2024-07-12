@@ -20,12 +20,3 @@ def add_medical_history(id_number):
     Patient.add_medical_history(id_number, data)
     return jsonify({"message": "medical history successfully added"}), 200
 
-@post_routes.route('/add_doctor', methods=['POST'], strict_slashes=False)
-def add_doctor():
-    """ add doctor"""
-    from app.models.doctor import Doctor
-    data = request.get_json()
-    if Doctor.get_one(data.get('id')):
-        return jsonify({"message": "doctor already exists"}), 400
-    registerd_doctor = Doctor.create(data)
-    return jsonify({"message": "doctor successfully added"}), 200
