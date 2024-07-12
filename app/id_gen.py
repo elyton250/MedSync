@@ -21,3 +21,7 @@ def generate_id(first_name, last_name, id_number):
   generated_id = first_initial + last_initial + last_digits
 
   return generated_id
+
+
+def history_id():
+  return ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))

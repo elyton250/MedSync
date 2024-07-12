@@ -1,5 +1,5 @@
 from app import db
-from app.id_gen import generate_id
+from app.id_gen import history_id
 
 class Department:
     def __init__(
@@ -8,7 +8,7 @@ class Department:
         description,
         head_of_department,
     ):
-        self.id = generate_id()
+        self.id = history_id()
         self.name = name
         self.description = description
         self.head_of_department = head_of_department
