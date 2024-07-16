@@ -52,6 +52,7 @@ def get_doctors():
 
 @api.route('/doctors/<id>', methods=['GET'], strict_slashes=False)
 def get_doctor(id):
+    """ Get a doctor by user id"""
     from app.models.doctor import Doctor
     # print(isinstance(id, str))
     if not id:
@@ -70,11 +71,6 @@ def get_doctor(id):
 def get_patients_by_doctor(id):
     from app.models.doctor import Doctor
     return Doctor.get_patient(id)
-
-@api.route('/doctors/<int:id>/delete')
-def delete_doctor(id):
-    from app.models.doctor import Doctor
-    return Doctor.delete(id)
 
 @api.route('/doctors/<int:id>/update')
 def update_doctor(id):

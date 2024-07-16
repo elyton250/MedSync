@@ -48,7 +48,7 @@ class Doctor:
 
     @staticmethod
     def delete(id):
-        db.doctors.delete_one({"id": id})
+        db.doctors.delete_one({"_id": id})
         
     @staticmethod
     def get_patient(id):
