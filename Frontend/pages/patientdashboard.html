@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Patient Dashboard</h1>
+    </header>
+    <div
+        style="background-image: url(https://wallpapercave.com/wp/wp8003033.jpg); background-size: 100% 100%; background-repeat: no-repeat;height: 483px;">
+        <div style="padding-left: 360px;
+    padding-top: 12%;
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: bold;">
+            <p style="width: 232px;
+    background-color: #0bd0ee80;;">Welcome, Patient!</p>
+            <p style="width: 790px;
+    background-color: #0bd0ee80;;">Here you can view your medical records, appointments, and more.</p>
+        </div>
+    </div>
+    <main>
+        <div style=" padding-left: 40%;">
+            <div class="section profile">
+                <h2>Add patient</h2>
+                <form style="margin: 0;">
+                    <div class="form-group">
+                        <label for="idNumber">ID Number:</label>
+                        <input style="width: 95%" type="text" id="idNumber" name="idNumber" value="123456789" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input style="width: 95%" type="text" id="firstName" name="firstName" value="BOB" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input style="width: 95%" type="text" id="lastName" name="lastName" value="Kalisa" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth:</label>
+                        <input style="width: 95%" type="date" id="dob" name="dob" value="1990-01-01" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <input style="width: 95%">
+                        <select id="gender" name="gender">
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input style="width: 95%" type="text" id="address" name="address" value="Gasabo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact Number:</label>
+                        <input style="width: 95%" type="text" id="contact" name="contact" value="0780000001" readonly>
+                    </div>
+                </form>
+            </div>
+            </br></br></br>
+            <div class="section records">
+                <h2>Medical Records</h2>
+                <div class="record-item">
+                    <p>Record 1: <a href="#">Download</a></p>
+                </div>
+                <div class="record-item">
+                    <p>Record 2: <a href="#">Download</a></p>
+                </div>
+            </div>
+            </br></br></br>
+            <div class="section appointments">
+                <h2>Appointments</h2>
+                <div class="appointment-item">
+                    <p>Upcoming: June 30, 2024 at 10:00 AM with Dr. Smith</p>
+                </div>
+                <div class="appointment-item">
+                    <p>Past: May 20, 2024 at 1:00 PM with Dr. Brown</p>
+                </div>
+            </div>
+            </br></br></br>
+            <div class="section booking">
+                <h2>Book an Appointment</h2>
+                <form style="margin: 0;">
+                    <div class="form-group">
+                        <label for="specialty">Specialty:</label>
+                        <select id="specialty" name="specialty">
+                            <option value="cardiology">Cardiology</option>
+                            <option value="dermatology">Dermatology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="pediatrics">Pediatrics</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctor">Doctor:</label>
+                        <select id="doctor" name="doctor">
+                            <option value="drlea">Dr. Lea</option>
+                            <option value="drchriss">Dr. Chriss</option>
+                            <option value="drtom">Dr. Tom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time:</label>
+                        <input type="time" id="time" name="time">
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Appointment Note:</label>
+                        <textarea id="note" name="note" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Book Appointment</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    </div>
+    <div id="test">
+        
+    </div>
+</body>
+<script src="src/components/PatientDashboard.js"></script>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #0bd0ee;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #0bd0ee 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        .form-section, .table-section {
+            background: #fff;
+            padding: 20%;
+            margin-bottom: 10%;
+        }
+        .form-section h2, .table-section h2 {
+            border-bottom: #0bd0ee 2px solid;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: #ddd 1px solid;
+            border-radius: 5px;
+        }
+        .form-group input[type="submit"] {
+            background: #0bd0ee;
+            color: #fff;
+            border: 0;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background: #0bd0ee;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #0bd0ee;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Doctor Dashboard</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#appointments">Appointments</a></li>
+                    <li><a href="#patients">Patients</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div>
+    <p>Welcome, Doctor!</p>
+        <p>Here you can view your schedule, patient records, and more.</p>
+    </div>
+     <section id="appointments" class="table-section">
+            <h2>Appointments</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Demographics</th>
+                        <th>Medical History</th>
+                        <th>Recent Records</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                </tbody>
+            </table>
+        </section>
+
+        <section id="patients" class="form-section">
+            <h2>Patient Profile and Diagnosis</h2>
+            <form id="patient-form">
+                <div class="form-group">
+                    <label for="patient-name">Patient Name</label>
+                    <input type="text" id="patient-name" name="patient-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="patient-history">Medical History</label>
+                    <textarea id="patient-history" name="patient-history" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="patient-records">Recent Records</label>
+                    <textarea id="patient-records" name="patient-records" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="diagnosis">Diagnosis</label>
+                    <textarea id="diagnosis" name="diagnosis" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="medication">Prescribe Medication</label>
+                    <select id="medication" name="medication">
+                        
+                        <option value="med1">Medication 1</option>
+                        <option value="med2">Medication 2</option>
+                        <option value="med3">Medication 3</option>
+                    
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" id="other-medication" name="other-medication" placeholder="Enter medication manually" style="display:none;">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save Patient Data">
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
+

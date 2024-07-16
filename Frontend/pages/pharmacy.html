@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Dashboard</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Pharmacy Dashboard</h1>
+    </header>
+    <main>
+        <p>Welcome, Pharmacy!</p>
+        <p>Here you can manage prescriptions, inventory, and more.</p>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+            }
+            header {
+                background: #0bd0ee;
+                color: #fff;
+                padding-top: 30px;
+                min-height: 70px;
+                border-bottom: #0bd0ee 3px solid;
+            }
+            header a {
+                color: #fff;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+            header ul {
+                padding: 0;
+                list-style: none;
+            }
+            header li {
+                float: left;
+                display: inline;
+                padding: 0 20px 0 20px;
+            }
+            .main-content {
+                background: #fff;
+                padding: 20px;
+                margin-top: 20px;
+                border-radius: 5px;
+            }
+            .form-section {
+                margin-bottom: 20px;
+            }
+            .form-section input, .form-section textarea {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+            }
+            .btn {
+                display: inline-block;
+                color: #fff;
+                background: #0bd0ee;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+            table {
+                width: 100%;
+                margin-top: 20px;
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid #ddd;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+       
+    
+            <!-- Incoming Prescriptions -->
+            <div class="form-section">
+                <h2>Incoming Prescriptions</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prescription ID</th>
+                            <th>Patient Name</th>
+                            <th>Medication</th>
+                            <th>Dosage</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prescriptionList">
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            <br>       
+            <!-- Patient Information -->
+            <div class="form-section">
+                <h2>Patient Information</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Address</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientList">
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            
+            <!-- Medication Details -->
+            <div class="form-section">
+                <h2>Medication Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Medication ID</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="medicationList">
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <script>
+            // JavaScript code for handling form submissions and data population
+    
+            // Example data
+            const prescriptions = [
+                {id: 1, patientName: 'John Doe', medication: 'Drug A', dosage: '10mg', status: 'Pending'},
+                {id: 2, patientName: 'Jane Smith', medication: 'Drug B', dosage: '20mg', status: 'Pending'},
+            ];
+    
+            const patients = [
+                {id: 1, name: 'John Doe', age: 30, address: '123 Main St', contact: '555-1234'},
+                {id: 2, name: 'Jane Smith', age: 40, address: '456 Elm St', contact: '555-5678'},
+            ];
+    
+            const medications = [
+                {id: 1, name: 'Drug A', quantity: 100, price: '$10'},
+                {id: 2, name: 'Drug B', quantity: 200, price: '$20'},
+            ];
+    
+            function populateData() {
+                const prescriptionList = document.getElementById('prescriptionList');
+                prescriptions.forEach(prescription => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${prescription.id}</td>
+                        <td>${prescription.patientName}</td>
+                        <td>${prescription.medication}</td>
+                        <td>${prescription.dosage}</td>
+                        <td>${prescription.status}</td>
+                        <td><button onclick="markAsDispensed(${prescription.id})">Dispense</button> <button onclick="markAsUnavailable(${prescription.id})">Unavailable</button></td>
+                    `;
+                    prescriptionList.appendChild(row);
+                });
+    
+                const patientList = document.getElementById('patientList');
+                patients.forEach(patient => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${patient.id}</td>
+                        <td>${patient.name}</td>
+                        <td>${patient.age}</td>
+                        <td>${patient.address}</td>
+                        <td>${patient.contact}</td>
+                    `;
+                    patientList.appendChild(row);
+                });
+    
+                const medicationList = document.getElementById('medicationList');
+                medications.forEach(medication => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${medication.id}</td>
+                        <td>${medication.name}</td>
+                        <td>${medication.quantity}</td>
+                        <td>${medication.price}</td>
+                        <td><button onclick="reorderMedication(${medication.id})">Reorder</button></td>
+                    `;
+                    medicationList.appendChild(row);
+                });
+            }
+    
+            function markAsDispensed(id) {
+                const prescription = prescriptions.find(p => p.id === id);
+                prescription.status = 'Dispensed';
+                updatePrescriptionList();
+            }
+    
+            function markAsUnavailable(id) {
+                const prescription = prescriptions.find(p => p.id === id);
+                prescription.status = 'Unavailable';
+                updatePrescriptionList();
+            }
+    
+            function reorderMedication(id) {
+                const medication = medications.find(m => m.id === id);
+                medication.quantity += 100; // Example logic for reordering
+                updateMedicationList();
+            }
+    
+            function updatePrescriptionList() {
+                const prescriptionList = document.getElementById('prescriptionList');
+                prescriptionList.innerHTML = '';
+                populateData();
+            }
+    
+            function updateMedicationList() {
+                const medicationList = document.getElementById('medicationList');
+                medicationList.innerHTML = '';
+                populateData();
+            }
+    
+            // Initial population of data
+            document.addEventListener('DOMContentLoaded', populateData);
+        </script>
+    </body>
+    </html>
+    </main>
+</body>
+</html>

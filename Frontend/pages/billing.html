@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Billing Dashboard</h1>
+    </header>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .profile {
+            margin-bottom: 20px;
+        }
+        .print-button {
+            margin: 20px 0;
+            text-align: right;
+        }
+        .print-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+
+<body>
+    <div class="container">
+        
+        <!-- Items Table -->
+        <h2>Items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Item 1</td>
+                    <td>$10.00</td>
+                    <td>$20.00</td>
+                </tr>
+                <tr>
+                    <td>Item 2</td>
+                    <td>$15.00</td>
+                    <td>$30.00</td>
+                </tr>
+                <!-- More items as needed -->
+            </tbody>
+        </table>
+
+        <!-- Doctor Profile -->
+        <div class="profile">
+            <h2>Doctor Profile</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>Dr. Jose Tuyi</td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td>Cardiology</td>
+                </tr>
+                <!-- More details as needed -->
+            </table>
+        </div>
+
+        <!-- Nurse Profile -->
+        <div class="profile">
+            <h2>Nurse Profile</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>Jane Safa</td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td>Oncology</td>
+                </tr>
+                <!-- More details as needed -->
+            </table>
+        </div>
+
+        <!-- Pharmacy Profile -->
+        <div class="profile">
+            <h2>Pharmacy Profile</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>XYZ Pharmacy</td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td>Pharmaceutical</td>
+                </tr>
+                <!-- More details as needed -->
+            </table>
+        </div>
+
+        <!-- Print Button -->
+        <div class="print-button">
+            <button onclick="window.print()">Print Bill</button>
+        </div>
+    </div>
+</body>
+</html>
