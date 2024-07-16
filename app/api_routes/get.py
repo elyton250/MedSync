@@ -44,6 +44,8 @@ def get_medical_histories_by_patient(id_number):
     from app.models.patient import Patient
     return Patient.get_medical_histories(id_number)
 
+# ********************** END PATIENTS *****************************
+
 @api.route('/doctors')
 def get_doctors():
     """ get all doctors in doctors collection"""
@@ -67,17 +69,39 @@ def get_doctor(id):
 #     from app.models.doctor import Doctor
 #     return Doctor.get_by_name(first_name, last_name)
 
-@api.route('/doctors/<int:id>/patients')
-def get_patients_by_doctor(id):
-    from app.models.doctor import Doctor
-    return Doctor.get_patient(id)
+# @api.route('/doctors/<int:id>/patients')
+# def get_patients_by_doctor(id):
+#     from app.models.doctor import Doctor
+#     return Doctor.get_patient(id)
 
-@api.route('/doctors/<int:id>/update')
-def update_doctor(id):
-    from app.models.doctor import Doctor
-    return Doctor.update(id)
+# @api.route('/doctors/<int:id>/update')
+# def update_doctor(id):
+#     from app.models.doctor import Doctor
+#     return Doctor.update(id)
 
-@api.route('/doctors/<int:id>/create')
-def create_doctor(id):
-    from app.models.doctor import Doctor
-    return Doctor.create(id)
+# @api.route('/doctors/<int:id>/create')
+# def create_doctor(id):
+#     from app.models.doctor import Doctor
+#     return Doctor.create(id)
+
+# ********************** END DOCTORS *****************************
+
+@api.route('/billers')
+def get_billers():
+    """ get all billers in billers collection"""
+    from app.models.biller import Biller
+    return Biller.get_all()
+
+@api.route('/billers/<id>', methods=['GET'], strict_slashes=False)
+def get_biller(id):
+    """ Get a biller by user id"""
+    from app.models.biller import Biller
+    # print(isinstance(id, str))
+    if not id:
+        return jsonify({"message": "id is required"}), 400
+    if Biller.get_one(id) is None:
+        return jsonify({"message": "biller not found"}), 404
+    return Biller.get_one(id)
+
+
+# ********************** END BILLERS *****************************

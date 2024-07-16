@@ -12,3 +12,13 @@ def signup_doc():
         return jsonify({"message": "doctor already exists"}), 400
     registerd_doctor = Doctor.create(data)
     return jsonify({"message": "doctor successfully added"}), 200
+
+@auth_routes.route('/signup/biller', methods=['POST'], strict_slashes=False)
+def signup_biller():
+    """ add biller"""
+    from app.models.biller import Biller
+    data = request.get_json()
+    if Biller.get_by_id_number(data.get('id_number')):
+        return jsonify({"message": "biller already exists"}), 400
+    registerd_biller = Biller.create(data)
+    return jsonify({"message": "biller successfully added"}), 200

@@ -23,3 +23,12 @@ def delete_doctor(id):
     Doctor.delete(id)
     return jsonify({"message": "doctor successfully deleted"}), 200
     
+@delete_routes.route('/billers/<id>/delete', methods=['DELETE'], strict_slashes=False)
+def delete_biller(id):
+    from app.models.biller import Biller
+    if not id:
+        return jsonify({"message": "id is required"}), 400
+    if Biller.get_one(id) is None:
+        return jsonify({"message": "biller not found"}), 404
+    Biller.delete(id)
+    return jsonify({"message": "biller successfully deleted"}), 200
