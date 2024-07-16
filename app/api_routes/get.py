@@ -46,6 +46,7 @@ def get_medical_histories_by_patient(id_number):
 
 @api.route('/doctors')
 def get_doctors():
+    """ get all doctors in doctors collection"""
     from app.models.doctor import Doctor
     return Doctor.get_all()
 
