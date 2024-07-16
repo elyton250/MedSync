@@ -82,6 +82,8 @@ Once the application is up and running, you can access it at `http://localhost:5
 
 ## API Endpoints
 
+[API Documentation](https://documenter.getpostman.com/view/36573881/2sA3e5dToe#intro)
+
 ### Patient Endpoints
 
 - `GET /patients`: Retrieve all patients
