@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask_login import LoginManager
+from flask_cors import CORS
 
 
 login_manager = LoginManager()
@@ -13,6 +14,8 @@ load_dotenv()
 medsync = Flask(__name__)
 
 login_manager.init_app(medsync)
+
+CORS(medsync)
 
 password = os.getenv("MONGO_PASSWORD")
 db_name = os.getenv("MONGO_DB")
