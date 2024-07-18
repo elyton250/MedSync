@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Patient Information</h3>
+    {% if patient %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{patient.first_name}}</td>            
+                </tr>
+            </tbody>
+            <!-- entry-->	
+            <thead>
+                <tr>
+                    <th scope="col">Last Name</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{patient.last_name}}</td>
+                </tr>
+            </tbody>
+            <!-- entry-->	
+            <thead>
+                <tr>
+                    <th scope="col">Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{patient.gender}}</td>
+                </tr>
+            </tbody>
+            <!-- entry-->	
+            <thead>
+                <tr>
+                    <th scope="col">Date Of Birth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{patient.date_of_birth}}</td>
+                </tr>
+            </tbody>
+            <!-- entry-->	
+            <thead>
+                <tr>
+                    <th scope="col">Id Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{patient.date_of_birth}}</td>
+                </tr>
+            </tbody>
+            <!-- entry-->
+            <thead>
+                <tr>
+                    <th scope="col">Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{patient.contact_number}}</td>
+                </tr>
+            </tbody>
+            <!-- entry-->
+            <thead>
+                <tr>
+                    <th scope="col">Medical History</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">View Medical History</a></td>
+                </tr>   
+            </tbody>    
+        </table>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        No patient found
+    </div>
+    {% endif %}
+{% endblock %}
