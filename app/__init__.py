@@ -13,7 +13,10 @@ load_dotenv()
 
 medsync = Flask(__name__)
 
+medsync.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+
 login_manager.init_app(medsync)
+
 
 CORS(medsync)
 
