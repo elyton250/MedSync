@@ -54,7 +54,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{patient.date_of_birth}}</td>
+                    <td>{{patient.id_number}}</td>
                 </tr>
             </tbody>
             <!-- entry-->
@@ -76,10 +76,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="#">View Medical History</a></td>
+                    <td><a href="{{url_for('pages.patient_history', patient_id=patient._id)}}">View Medical History</a></td>
                 </tr>   
             </tbody>    
         </table>
+        <button type="button" class="btn btn-primary">
+            <a href="{{url_for('pages.create_plan', patient_id=patient._id)}}" id="create">Create Plan</a>
+        </button>
     {% else %}
     <div class="alert alert-warning" role="alert">
         No patient found

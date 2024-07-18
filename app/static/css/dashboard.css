@@ -11,6 +11,11 @@
     margin-top:50px;
 }
 
+.history{
+    margin-left:20px;
+    border: red solid 1px;
+}
+
 :root{
     /* ===== Colors ===== */
     --primary-color: #0E4BF1;

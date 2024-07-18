@@ -72,9 +72,9 @@ class Patient:
     #     return db.patients.find_one({"first_name": first_name, "last_name": last_name})
 
     @staticmethod
-    def get_medical_histories(id_number):
+    def get_medical_histories(patient_id):
         """ get medical histories by patient's NID number"""
-        return list(db.medical_histories.find({"patient_id": id_number}))
+        return list(db.medical_histories.find({"patient_id": patient_id}))
     
     @staticmethod
     def delete(id_number):
@@ -97,3 +97,13 @@ class Patient:
         patient = Patient(**data)
         patient.save()
         return patient
+    
+    @staticmethod
+    def add_medical_history(patient_id, data):
+        medical_history = MedicalHistory(**data)
+        medical_history_json = medical_history.to_json()
+        print('medical_history', medical_history)
+        medical_history.save()
+        db.patients.update_one({"_id": patient_id}, {"$push": {"medical_history":  medical_history_json}})
+        return medical_history_json
+    

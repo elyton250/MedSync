@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="holder">
+    <div class="container">
+        <h2>Create Treatment Plan</h2>
+        <form id="treatmentForm" action="{{ url_for('post_routes.add_medical_history', patient_id=patient._id) }}" method="POST">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Treatment Details</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label for="patient-id">Patient ID</label>
+                            <input type="text" id="patient-id" name="patient_id" value="{{ patient._id }}" placeholder="Enter patient ID" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="visit-date">Visit Date</label>
+                            <input type="date" id="visit-date" name="visit_date" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="diagnosis">Diagnosis</label>
+                            <input type="text" id="diagnosis" name="diagnosis" placeholder="Enter diagnosis" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="treatment-type">Treatment Type</label>
+                            <select id="treatment-type" name="treatment_type" required>
+                                <option value="" disabled selected>Select treatment type</option>
+                                <option value="surgery">Surgery</option>
+                                <option value="medication">Medication</option>
+                                <option value="both">Both</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label for="treatment-description">Treatment Description</label>
+                            <textarea id="treatment-description" name="treatment_description" placeholder="Describe treatment" required></textarea>
+                        </div>
+                        <div class="input-field">
+                            <label for="note">Note</label>
+                            <textarea id="note" name="note" placeholder="Enter patient summary" required></textarea>
+                        </div>
+                        <div class="input-field">
+                            <label for="treatment-duration">Treatment Duration (days)</label>
+                            <input type="number" id="treatment-duration" name="treatment_duration" placeholder="Enter duration" required>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="reset" class="backBtn">
+                            <i class="uil uil-times-circle"></i>
+                            <span class="btnText">Cancel Entry</span>
+                        </button>
+                        <button type="submit" class="submitBtn" id="submitBtn">
+                            <span class="btnText">Submit</span>
+                            <i class="uil uil-check-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Listen for form submission
+        document.getElementById('treatmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Show SweetAlert confirmation message
+            Swal.fire({
+                icon: 'success',
+                title: 'Treatment Plan Submitted!',
+                text: 'Redirecting to Home Page...',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(function() {
+                
+                window.location.href = "{{ url_for('pages.all_patients') }}";
+            });
+        });
+    });
+</script>
+{% endblock %}

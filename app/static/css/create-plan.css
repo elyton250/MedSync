@@ -1,0 +1,87 @@
+
+    /* .holder {
+        padding: 20px;
+    } */
+    #create{
+        color: white;	
+    }
+    #treatment-description{
+        height: 150px;
+    }
+    #note{
+        height: 150px;
+    }
+
+    #treatment-duration{
+        width: 250px;
+    }
+    .container {
+        max-width: 800px;
+        margin: auto;
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+    .details {
+        margin-bottom: 20px;
+    }
+    .title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .fields {
+        display: block;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .input-field {
+        flex: 1;
+        min-width: 200px;
+    }
+    .input-field label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .input-field input,
+    .input-field select,
+    .input-field textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .input-field textarea {
+        resize: vertical;
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+    .buttons button {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+    }
+    .buttons .backBtn {
+        background-color: #dc3545;
+    }
+    .buttons .submitBtn {
+        background-color: #28a745;
+    }

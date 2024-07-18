@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if patient %}
+<div class="container mt-5" id="history">
+    <!-- Patient Identification -->
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Patient Identification</h3>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">First Name:</div>
+                        <div class="col-md-8">{{ patient.first_name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">Last Name:</div>
+                        <div class="col-md-8">{{ patient.last_name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">Gender:</div>
+                        <div class="col-md-8">{{ patient.gender }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">Date of Birth:</div>
+                        <div class="col-md-8">{{ patient.date_of_birth }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">Patient ID:</div>
+                        <div class="col-md-8">{{ patient._id }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medical History -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h3>Medical History</h3>
+            {% for history in histories %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h4 class="card-title">Visit Date: {{ history.visit_date }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">Diagnosis:</div>
+                        <div class="col-md-8">{{ history.diagnosis }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">Treatment Type:</div>
+                        <div class="col-md-8">
+                            {% for treatment in treatments %}
+                                {% for treat in treatment %}
+                                    {% for key in treat %}
+                                        <div><strong>{{ key }}</strong>: {{ treat[key] }}</div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">Treatment Duration(Days):</div>
+                        <div class="col-md-8">{{ history.treatment_duration }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold">Doctor's Note:</div>
+                        <div class="col-md-8">{{ history.note }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% else %}
+    <div class="container mt-5">
+        <p class="alert alert-warning">No patient found</p>
+    </div>
+{% endif %}
+{% endblock %}

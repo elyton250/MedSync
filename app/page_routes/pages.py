@@ -21,7 +21,6 @@ def dashboard_doctor():
 def all_patients():
     """ get all patients"""
     patients = Patient.get_all()
-    print(patients)
     return render_template('doctor/all-patients.html', patients=patients)
 
 
@@ -30,3 +29,19 @@ def patient_view(patient_id):
     """ get all patients"""
     patient = Patient.get_one_by_id(patient_id)
     return render_template('doctor/patient-view.html', patient=patient)
+
+@pages.route('/create_plan/<patient_id>', strict_slashes=False)
+def create_plan(patient_id):
+    """ get all patients"""
+    patient = Patient.get_one_by_id(patient_id)
+    return render_template('doctor/create-plan.html', patient=patient)
+
+@pages.route('/patient_history/<patient_id>', strict_slashes=False)
+def patient_history(patient_id):
+    """ get all patients"""
+    patient = Patient.get_one_by_id(patient_id)
+    histories = Patient.get_medical_histories(patient_id)
+    print('histories', histories)
+    treatments = []
+    treatments = [history.get('treatment') for history in histories]
+    return render_template('doctor/medical-history.html', patient=patient, histories=histories, treatments=treatments)
