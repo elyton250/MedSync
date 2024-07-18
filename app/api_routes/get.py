@@ -105,3 +105,25 @@ def get_biller(id):
 
 
 # ********************** END BILLERS *****************************
+
+
+@api.route('/nurses')
+def get_nurses():
+    """ get all nurses in nurses collection"""
+    from app.models.nurse import Nurse
+    return Nurse.get_all()
+
+
+@api.route('/nurses/<id>', methods=['GET'], strict_slashes=False)
+def get_nurse(id):
+    """ Get a nurse by user id"""
+    from app.models.nurse import Nurse
+    # print(isinstance(id, str))
+    if not id:
+        return jsonify({"message": "id is required"}), 400
+    if Nurse.get_one(id) is None:
+        return jsonify({"message": "nurse not found"}), 404
+    return Nurse.get_one(id)
+
+
+# ********************** END NURSES *****************************
