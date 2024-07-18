@@ -79,6 +79,22 @@ button:hover{
 	transform: scale(.6);
 }
 
+.login label[for="role"]{
+	margin-right: 10px;
+}
+#role{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
+#role {
+  display: block;
+  margin: 0 auto;
+}
 #chk:checked ~ .login{
 	transform: translateY(-500px);
 }
