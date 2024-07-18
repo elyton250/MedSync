@@ -41,11 +41,14 @@ from app.api_routes.get import api
 from app.api_routes.post import post_routes
 from app.api_routes.delete import delete_routes
 from app.auth.signup import auth_routes
+from app.page_routes.pages import pages
+
 
 
 medsync.register_blueprint(api)
 medsync.register_blueprint(post_routes)
 medsync.register_blueprint(delete_routes)
 medsync.register_blueprint(auth_routes)
+medsync.register_blueprint(pages)
 
 
