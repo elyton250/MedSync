@@ -12,14 +12,10 @@ from app import login_manager
 pages = Blueprint('pages', __name__)
 api = Blueprint('api', __name__)
 
-# # Initialize LoginManager
-# login_manager = LoginManager()
-# login_manager.init_app(medsync)
-
-@pages.route('/pages')
+@pages.route('/', strict_slashes=False)
 def landing_page():
-    """ Testing API. """
-    return jsonify({"Response": "OK to Pages"})
+    """ Landing page """
+    return render_template('index.html')
 
 @pages.route('/login', strict_slashes=False)
 def login():
@@ -44,6 +40,7 @@ def load_user(user_id):
         return None
 
     return UserWrapper(user, role)
+    
 
 @pages.route('/auth', methods=['POST', 'GET'], strict_slashes=False)
 def auth():

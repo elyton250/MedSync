@@ -4,10 +4,10 @@ from flask import Blueprint, jsonify
 
 api = Blueprint('api', __name__)
 
-@api.route('/')
-def hello_world():
-    """ Texting API. """
-    return jsonify({"Response": "OK"})
+# @api.route('/')
+# def hello_world():
+#     """ Texting API. """
+#     return jsonify({"Response": "OK"})
 
 @api.route('/patients', strict_slashes=False)
 def get_patients():

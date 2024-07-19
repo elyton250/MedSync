@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medsync</title>
+  <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="stylesheet" href="styles/auth.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <h2 class="logo"><a href="#">MATERNAL <br> HEALTH SYSTEM</a></h2>
+      <ul class="all-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main style="padding: 0;">
+    <img style="width: 100%;height: 550px;" src="../static/images/doc.jpeg" alt="Medical ">
+    <div>
+      <section class="homepage" id="home">
+        <div class="content">
+          <div class="text">
+            <h1>EMPOWERING</h1>
+            <h1>YOUR MATERNAL</h1>
+            <h1>JOURNEY</h1>
+            <p>
+              Motherhood, A journey of love, strength, and well being. <br> We're here to support you every step of the
+              way.</p>
+          </div>
+        </div>
+      </section>
+      <div>
+
+        <div class="login-options">
+          <a href="{{ url_for('pages.login') }}"><i class="fa fa-medkit" aria-hidden="true"></i>Login as Doctor</a>
+          <a href="{{ url_for('pages.login') }}" class="">Login as Nurse</a>
+          <a href="{{ url_for('pages.login') }}">Login as Pharmacist</a>
+          <a href="{{ url_for('pages.login') }}">Login as Biller</a>
+        </div>
+      </div>
+
+      <section class="services" id="services">
+        <h2>Our Services To The Community</h2>
+        <p>The Maternal Health System dashboard can significantly improve the quality of maternal healthcare, enhance
+          patient satisfaction, and streamline operations for healthcare providers.</p>
+        <ul class="cards">
+          <li class="card">
+            <img style="width: 100%;height: 200px" ;
+              src="https://ssir.org/images/blog/Rwanda-Maternal-Child-Health-Lessons-592x333.jpg" alt="img">
+            <h3>Improved Maternal Health Outcomes</h3>
+            <p>Access to personal health records care information, <br> appointment scheduling, and reminders. This
+              ensures timely and consistent care.</p>
+          </li>
+          <li class="card">
+            <img style="width: 100%;height: 200px" ; src="https://ychef.files.bbci.co.uk/1920x960/p0d6kyq8.jpeg"
+              alt="img">
+            <h3>Workflow for Healthcare Providers</h3>
+            <p>Reduces administrative burden by integrating <br> various functions (appointments, billing,
+              prescriptions) into one platform.</p>
+          </li>
+          <li class="card">
+            <img style="width: 100%;height: 200px" src="../static/images/enhance.png" alt="img">
+            <h3>Enhanced Communication</h3>
+            <p>Secure messaging system for patients and doctors to discuss concerns, symptoms,<br> and follow-up care.
+            </p>
+          </li>
+          <li class="card">
+            <img style="width: 100%;height: 200px" src="../static/images/resource.jpg" alt="img">
+            <h3>Efficient Resource Management</h3>
+            <p>Real-time updates on prescriptions, inventory management, <br> and drug interaction alerts, billing and
+              financial transactions for patients.</p>
+          </li>
+        </ul>
+      </section>
+
+
+      <section class="about" id="about">
+        <h2>About Us</h2>
+        <p>We at Maternal Health System are passionate about improving the lives of mothers and their newborns.<br> We
+          believe that every woman deserves access to quality care throughout pregnancy, childbirth, and the postpartum
+          period.</p>
+        <div class="row company-info">
+          <h3 style="margin-left: 0 !important;">Our Story</h3>
+          <p>Our story began with the realization that far too many women face complications during pregnancy and
+            childbirth.<br> These complications are often preventable with proper care.<br> We decided to take action
+            and develop a system that could bridge the gap and ensure better obstetric care for mothers in our
+            community.</p>
+        </div>
+        <div class="row mission-vision">
+          <h3 style="margin-left: 0 !important;">Our Mission</h3>
+          <p>To empower healthcare providers and improve maternal health outcomes through innovative technology.</p>
+          <h3 style="margin-left: 0 !important;">Our Vision</h3>
+          <p>We envision a world where every mother has access to the resources and support she needs for a healthy
+            pregnancy and a safe delivery.</p>
+        </div>
+        <div class="row team" style="padding-left: 35%;">
+          <h3 style="margin-left: 0 !important;">Our Team</h3>
+          <ul>
+            <li> Smith - Founder and CEO</li>
+            <li> Jane - Gear Specialist</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <p>is a safe general option.</p>
+        <div class="row">
+          <div class="col information">
+            <div class="contact-details">
+              <p><i class="fas fa-map-marker-alt"></i> 123 Smith,98765</p>
+              <p><i class="fas fa-envelope"></i> info@maternal.com</p>
+              <p><i class="fas fa-phone"></i> (142) 452-7310</p>
+              <p><i class="fas fa-clock"></i> 24/7</p>
+              <p><i class="fas fa-globe"></i> www.maternalhealthsystem.in</p>
+            </div>
+          </div>
+          <div class="col form">
+            <form>
+              <input type="text" placeholder="Name*" required>
+              <input type="email" placeholder="Email*" required>
+              <textarea placeholder="Message*" required></textarea>
+              <button id="submit" type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    </div>
+    <footer>
+      <div>
+        <span>Copyright © 2024 All Rights Reserved</span>
+        <span class="link">
+          <a href="#">Home</a>
+          <a href="#contact">Contact</a>
+        </span>
+      </div>
+    </footer>
+
+  </main>
+  <!-- <script src="dynamic/.js"></script> -->
+</body>
+
+</html>
