@@ -1,21 +1,7 @@
 {% extends 'base.html' %} 
 {% block content %}
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Patient ID</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-    </tbody>
-  </table>
+<div style="display: flex; justify-content: space-between;">
+  <h2>Doctor Dashboard</h2>
+  <h3>{{ current_user.first_name }} {{ current_user.last_name }} | {{ current_user._id }}</h3>
+</div>
 {% endblock %}

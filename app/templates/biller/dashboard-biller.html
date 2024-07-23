@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <h2>Biller Dashboard</h2>
+    <h3>{{ current_user.first_name }} {{ current_user.last_name }} | {{ current_user._id }}</h3>
+  </div>
+{% endblock %}

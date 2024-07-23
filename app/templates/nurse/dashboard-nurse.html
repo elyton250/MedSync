@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex; justify-content: space-between;">
+    <h2>Nurse Dashboard</h2>
+    <h3>{{ current_user.first_name }} {{ current_user.last_name }} | {{ current_user._id }}</h3>
+</div>
+<br>
+<br>
+<h4>Add Patient:</h4>
+<br>
+<form action="{{ url_for('post_routes.add_patient') }}" method="POST">
+  <div class="form-group">
+    <label for="first-name">First Name</label>
+    <input type="text" id="first-name" name="first_name" placeholder="Enter first name" required>
+  </div><br>
+  <div class="form-group">
+    <label for="last-name">Last Name</label>
+    <input type="text" id="last-name" name="last_name" placeholder="Enter last name" required>
+  </div><br>
+  <div class="form-group">
+    <label for="date-of-birth">Date of Birth</label>
+    <input type="date" id="date-of-birth" name="date_of_birth" required>
+  </div><br>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <select id="gender" name="gender" required>
+      <option value="" disabled selected>Select gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div><br>
+  <div class="form-group">
+    <label for="id-number">ID Number</label>
+    <input type="text" id="id-number" name="id_number" placeholder="Enter ID number" required>
+  </div><br>
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address" placeholder="Enter address" required>
+  </div><br>
+  <div class="form-group">
+    <label for="contact-number">Contact Number</label>
+    <input type="text" id="contact-number" name="contact_number" placeholder="Enter contact number" required>
+  </div><br>
+  <button type="submit">Add Patient</button>
+</form>
+
+{% endblock %}
