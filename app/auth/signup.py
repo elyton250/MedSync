@@ -32,3 +32,13 @@ def signup_nurse():
         return jsonify({"message": "nurse already exists"}), 400
     registerd_nurse = Nurse.create(data)
     return jsonify({"message": "nurse successfully added"}), 200
+
+@auth_routes.route('/signup/pharmacist', methods=['POST'], strict_slashes=False)
+def signup_pharmacist():
+    """ add pharmacist"""
+    from app.models.pharmacist import Pharmacist
+    data = request.get_json()
+    if Pharmacist.get_by_id_number(data.get('id_number')):
+        return jsonify({"message": "pharmacist already exists"}), 400
+    registerd_pharmacist = Pharmacist.create(data)
+    return jsonify({"message": "pharmacist successfully added"}), 200

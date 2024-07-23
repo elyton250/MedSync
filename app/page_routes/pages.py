@@ -98,12 +98,14 @@ def patient_view(patient_id):
     return render_template('doctor/patient-view.html', patient=patient)
 
 @pages.route('/create_plan/<patient_id>', strict_slashes=False)
+@login_required
 def create_plan(patient_id):
     """ get all patients"""
     patient = Patient.get_one_by_id(patient_id)
     return render_template('doctor/create-plan.html', patient=patient)
 
 @pages.route('/patient_history/<patient_id>', strict_slashes=False)
+@login_required
 def patient_history(patient_id):
     """ get all patients"""
     patient = Patient.get_one_by_id(patient_id)

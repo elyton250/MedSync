@@ -9,11 +9,13 @@ api = Blueprint('api', __name__)
 #     """ Texting API. """
 #     return jsonify({"Response": "OK"})
 
+
 @api.route('/patients', strict_slashes=False)
 def get_patients():
     """ get all patients"""
     from app.models.patient import Patient
     return Patient.get_all()
+
 
 @api.route('/patients/<id_number>', strict_slashes=False)
 def get_patient(id_number):
@@ -38,6 +40,7 @@ def get_patient(id_number):
 #     from app.models.patient import Patient
 #     return Patient.get_by_name(first_name, last_name)
 
+
 @api.route('/patients/<int:id_number>/medical_histories', strict_slashes=False)
 def get_medical_histories_by_patient(id_number):
     """ get medical histories by patient's NID number"""
@@ -46,11 +49,13 @@ def get_medical_histories_by_patient(id_number):
 
 # ********************** END PATIENTS *****************************
 
+
 @api.route('/doctors')
 def get_doctors():
     """ get all doctors in doctors collection"""
     from app.models.doctor import Doctor
     return Doctor.get_all()
+
 
 @api.route('/doctors/<id>', methods=['GET'], strict_slashes=False)
 def get_doctor(id):
@@ -62,6 +67,7 @@ def get_doctor(id):
     if Doctor.get_one(id) is None:
         return jsonify({"message": "doctor not found"}), 404
     return Doctor.get_one(id)
+
 
 """ I commented this because doctors can have same names"""
 # @api.route('/doctors/<string:first_name>/<string:last_name>')
@@ -86,11 +92,13 @@ def get_doctor(id):
 
 # ********************** END DOCTORS *****************************
 
+
 @api.route('/billers')
 def get_billers():
     """ get all billers in billers collection"""
     from app.models.biller import Biller
     return Biller.get_all()
+
 
 @api.route('/billers/<id>', methods=['GET'], strict_slashes=False)
 def get_biller(id):
@@ -127,3 +135,25 @@ def get_nurse(id):
 
 
 # ********************** END NURSES *****************************
+
+
+@api.route('/pharmacists')
+def get_pharmacists():
+    """ get all pharmacists in pharmacists collection"""
+    from app.models.pharmacist import Pharmacist
+    return Pharmacist.get_all()
+
+
+@api.route('/pharmacists/<id>', methods=['GET'], strict_slashes=False)
+def get_pharmacist(id):
+    """ Get a pharmacist by user id"""
+    from app.models.pharmacist import Pharmacist
+    # print(isinstance(id, str))
+    if not id:
+        return jsonify({"message": "id is required"}), 400
+    if Pharmacist.get_one(id) is None:
+        return jsonify({"message": "pharmacist not found"}), 404
+    return Pharmacist.get_one(id)
+
+
+# ********************** END PHARMACISTS *****************************
