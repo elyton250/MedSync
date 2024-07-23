@@ -4,8 +4,8 @@ from app.models.patient import Patient
 from app.models.doctor import Doctor
 from app.models.nurse import Nurse
 from app.models.biller import Biller
-from app.hash_pass import encrypt_password, check_password
 from app.models.pharmacist import Pharmacist
+from app.hash_pass import encrypt_password, check_password
 from app.user_wrapper import UserWrapper
 from app import login_manager
 import requests
@@ -15,18 +15,17 @@ from app import db
 pages = Blueprint('pages', __name__)
 api = Blueprint('api', __name__)
 
-
 @pages.route('/', strict_slashes=False)
 def landing_page():
     """ Landing page """
     return render_template('index.html')
 
+# ***************** AUTHENTICATION ROUTES ******************
 
 @pages.route('/login', strict_slashes=False)
 def login():
     """ Login page """
     return render_template('auth.html')
-
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -49,7 +48,6 @@ def load_user(user_id):
 
     return UserWrapper(user, role)
 
-
 @pages.route('/auth', methods=['POST', 'GET'], strict_slashes=False)
 def auth():
     if request.method == 'POST':
@@ -58,8 +56,6 @@ def auth():
         role = request.form['role']
         user = None
 
-        print(_id, password, role)
-        print("-------------")
         if role == 'doctor':
             user = Doctor.get_one(_id)
         elif role == 'nurse':
@@ -69,17 +65,20 @@ def auth():
         elif role == 'pharmacist':
             user = Pharmacist.get_one(_id)
 
-        print(user)
-        print("-------------")
         if user and check_password(user['hash_password'], password):
             user_wrapper = UserWrapper(user, role)
             login_user(user_wrapper)
             session['role'] = role
-            print("Login Successful")
-            return redirect(url_for('pages.dashboard_doctor'))
+            if role == 'doctor':
+                return redirect(url_for('pages.dashboard_doctor'))
+            elif role == 'nurse':
+                return redirect(url_for('pages.dashboard_nurse'))
+            elif role == 'biller':
+                return redirect(url_for('pages.dashboard_biller'))
+            elif role == 'pharmacist':
+                return redirect(url_for('pages.dashboard_pharmacist'))
         return redirect(url_for('pages.login'))
     return redirect(url_for('pages.login'))
-
 
 role_to_collection = {
     'doctor': Doctor,
@@ -87,7 +86,6 @@ role_to_collection = {
     'pharmacist': Pharmacist,
     'biller': Biller
 }
-
 
 @pages.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
 def signup():
@@ -118,11 +116,9 @@ def signup():
         elif role == 'biller':
             response = requests.post(
                 'http://localhost:5000/signup/biller', json=data)
-            
 
         if response.status_code == 200:
             user_collection = role_to_collection[role]
-            print(user_collection)
             user = user_collection.get_by_id_number(data['id_number'])
             flash(f'Successfully created account! Use your code {user.get("_id")} to Login', 'success')
             return redirect(url_for('pages.login'))
@@ -132,7 +128,6 @@ def signup():
 
     return render_template('auth.html')
 
-
 @pages.route('/logout')
 @login_required
 def logout():
@@ -140,13 +135,33 @@ def logout():
     session.pop('role', None)
     return redirect(url_for('pages.landing_page'))
 
+# ***************** DASHBOARD ROUTES ******************
 
-@pages.route('/dashboard', strict_slashes=False)
+@pages.route('/dashboard_doctor', strict_slashes=False)
 @login_required
 def dashboard_doctor():
     """ Doctor dashboard """
     return render_template('doctor/dashboard-doctor.html')
 
+@pages.route('/dashboard_nurse', strict_slashes=False)
+@login_required
+def dashboard_nurse():
+    """ Nurse dashboard """
+    return render_template('nurse/dashboard-nurse.html')
+
+@pages.route('/dashboard_biller', strict_slashes=False)
+@login_required
+def dashboard_biller():
+    """ Biller dashboard """
+    return render_template('biller/dashboard-biller.html')
+
+@pages.route('/dashboard_pharmacist', strict_slashes=False)
+@login_required
+def dashboard_pharmacist():
+    """ Pharmacist dashboard """
+    return render_template('pharmacist/dashboard-pharmacist.html')
+
+# ***************** PATIENT ROUTES ******************
 
 @pages.route('/all_patients', strict_slashes=False)
 @login_required
@@ -155,14 +170,12 @@ def all_patients():
     patients = Patient.get_all()
     return render_template('doctor/all-patients.html', patients=patients)
 
-
 @pages.route('/patient_view/<patient_id>', strict_slashes=False)
 @login_required
 def patient_view(patient_id):
     """ View a single patient """
     patient = Patient.get_one_by_id(patient_id)
     return render_template('doctor/patient-view.html', patient=patient)
-
 
 @pages.route('/create_plan/<patient_id>', strict_slashes=False)
 @login_required
@@ -171,14 +184,11 @@ def create_plan(patient_id):
     patient = Patient.get_one_by_id(patient_id)
     return render_template('doctor/create-plan.html', patient=patient)
 
-
 @pages.route('/patient_history/<patient_id>', strict_slashes=False)
 @login_required
 def patient_history(patient_id):
     """ get all patients"""
     patient = Patient.get_one_by_id(patient_id)
     histories = Patient.get_medical_histories(patient_id)
-    print('histories', histories)
-    treatments = []
     treatments = [history.get('treatment') for history in histories]
     return render_template('doctor/medical-history.html', patient=patient, histories=histories, treatments=treatments)
