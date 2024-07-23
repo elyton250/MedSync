@@ -75,7 +75,7 @@ def auth():
 def logout():
     logout_user()
     session.pop('role', None)
-    return redirect(url_for('pages.login'))
+    return redirect(url_for('pages.landing_page'))
 
 @pages.route('/dashboard', strict_slashes=False)
 @login_required
