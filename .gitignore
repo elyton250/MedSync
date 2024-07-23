@@ -4,7 +4,6 @@ venv/
 # Ignore Python compiled files
 __pycache__/
 *.py[cod]
-*.pyc
 
 # Ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/
