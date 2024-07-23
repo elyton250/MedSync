@@ -5,14 +5,52 @@
     <title>MedSync | Auth</title>
     <link rel="stylesheet" type="text/css" href="../static/css/auth.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <style>
+        .flash-message {
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .flash-success {
+            background-color: green;
+        }
+
+        .flash-danger {
+            background-color: red;
+        }
+
+        .flash-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="main">
+        <!-- Flash messages section -->
+        <div class="flash-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul class="flash-message">
+                {% for category, message in messages %}
+                <li class="flash-message flash-{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+
         <input type="checkbox" id="chk" aria-hidden="true">
 
         <div class="signup">
-            <form id="signupForm">
+            <form id="signupForm" method="POST" action="{{ url_for('pages.signup') }}">
                 <label for="chk" aria-hidden="true">Sign up</label>
                 <select id="role" name="role">
                     <option value="doctor">Doctor</option>
@@ -37,6 +75,7 @@
                     <option value="doctor">Doctor</option>
                     <option value="nurse">Nurse</option>
                     <option value="biller">Biller</option>
+                    <option value="pharmacist">Pharmacist</option>
                 </select>
 
                 <input type="text" name="User Id" placeholder="User Id" required="">
@@ -46,6 +85,5 @@
         </div>
     </div>
 </body>
-<script src="../static/dynamic/auth.js"></script>
 
 </html>
